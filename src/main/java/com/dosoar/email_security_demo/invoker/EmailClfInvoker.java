@@ -22,10 +22,9 @@ public class EmailClfInvoker {
     public EmailClfResponse emailClf(EmailClfParam param) {
         EmailClfResponse response = new EmailClfResponse();
 
-        String responseStr = HttpRequestUtils.jsonObjectPost(llmVerifyEmailUrl, JSONObject.toJSONString( param));
+        String responseStr = HttpRequestUtils.jsonObjectPost(llmVerifyEmailUrl, JSONObject.toJSONString(param));
         JSONObject obj = JSONObject.parseObject(responseStr);
-        if (obj!=null) {
-//            JSONObject result = obj.getJSONObject("result");
+        if (obj != null) {
             response.setModelType(obj.getString("model_type"));
             response.setLabel(obj.getJSONArray("label").toJavaList(Integer.class));
             response.setProba(obj.getJSONArray("proba").toJavaList(Double.class));

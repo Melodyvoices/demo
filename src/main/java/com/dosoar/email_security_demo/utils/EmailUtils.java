@@ -43,13 +43,16 @@ public class EmailUtils {
             //邮件主题
             String subject = parser.getSubject();
             emailDto.setTile(subject);
+            //邮件内容
+            String content=msg.getContent().toString();
+            emailDto.setContent(content);
         }catch (Exception e) {
             e.printStackTrace();
         }
         return emailDto;
     }
     public static void main(String[] args) {
-        String path = "E:\\work\\Dosoar\\project\\EmailSecurity\\test\\eml\\001.eml";
+        String path = "E:\\work\\Dosoar\\project\\EmailSecurity\\test\\eml\\003.eml";
         EmailDto emailDto = parseEml(path);
         System.out.println(JSONObject.toJSONString(emailDto));
     }

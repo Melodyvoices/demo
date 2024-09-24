@@ -12,6 +12,8 @@ import java.util.Date;
 public class EmailDto {
     private String tile;
 
+    private String content;
+
     private String senders;
 
     private String recipients;

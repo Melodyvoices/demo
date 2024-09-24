@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,5 +17,5 @@ public class EmailClfParam implements Serializable {
 
     private String model_type;
 
-    private String email_path;
+    private List<String> email_path;
 }

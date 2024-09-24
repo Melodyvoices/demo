@@ -31,4 +31,4 @@ common:
     faq-url: http://10.35.56.42:8223/v1/chat
     verify-email-url: http://10.35.56.41:8220/v1/eml_clf
   data:
-    upload-path: /data0/upload
+    upload-path: E:/work/Dosoar/project/EmailSecurity/test/eml
