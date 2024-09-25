@@ -25,9 +25,6 @@ public class HttpRequestUtils {
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity responseEntity = httpResponse.getEntity();
             responseStr = EntityUtils.toString(responseEntity);
-            System.out.println(responseStr);
-            System.out.println(JSONObject.toJSONString(responseEntity));
-            System.out.println(JSONObject.toJSONString(httpResponse));
 
         } catch (IOException e) {
             throw new RuntimeException(e);

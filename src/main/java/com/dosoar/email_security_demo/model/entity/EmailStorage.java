@@ -54,7 +54,7 @@ public class EmailStorage extends BaseEntity implements Serializable {
     /**
      * 接收人（英文逗号隔开）
      */
-    private String receivers;
+    private String recipients;
 
     /**
      * 发送人（英文逗号隔开）

@@ -28,7 +28,7 @@ mongo-plus:
 
 common:
   llm:
-    faq-url: http://10.35.56.42:8223/v1/chat
+    ai-chat-url: http://10.35.56.42:8223/v1/chat
     verify-email-url: http://10.35.56.41:8220/v1/eml_clf
   data:
     upload-path: E:/work/Dosoar/project/EmailSecurity/test/eml
