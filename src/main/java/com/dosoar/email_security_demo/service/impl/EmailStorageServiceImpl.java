@@ -48,28 +48,28 @@ public class EmailStorageServiceImpl extends ServiceImpl<EmailStorage> implement
         emailStorage.setId(id);
         emailStorage.setStatus(EmailStorageStatusEnum.CHECKING.getCode());
 
-//        CompletableFuture.runAsync(() -> {
-//            EmailClfParam emailClfParam = new EmailClfParam();
-//            emailClfParam.setModel_type("model_1");
-//            List<String> email_path=new ArrayList<>();
-//            email_path.add(emailAbsolutePath);
-//            emailClfParam.setEmail_path(email_path);
-//
-//            EmailClfResponse response = emailClfInvoker.emailClf(emailClfParam);
-//
-//            EmailStorage es = new EmailStorage();
-//            es.setId(id);
-//            if (response != null) {
-//                es.setType(response.getLabel().get(0));
-//                es.setStatus(response.getLabel().get(0));
-//            } else {
-//                es.setStatus(EmailStorageStatusEnum.FAIL.getCode());
-//            }
-//            this.updateById(es);
-//        }).exceptionally(ex -> {
-//            ex.printStackTrace();
-//            return null;
-//        });
+        CompletableFuture.runAsync(() -> {
+            EmailClfParam emailClfParam = new EmailClfParam();
+            emailClfParam.setModel_type("model_1");
+            List<String> email_path=new ArrayList<>();
+            email_path.add(emailAbsolutePath);
+            emailClfParam.setEmail_path(email_path);
+
+            EmailClfResponse response = emailClfInvoker.emailClf(emailClfParam);
+
+            EmailStorage es = new EmailStorage();
+            es.setId(id);
+            if (response != null) {
+                es.setType(response.getLabel().get(0));
+                es.setStatus(response.getLabel().get(0));
+            } else {
+                es.setStatus(EmailStorageStatusEnum.FAIL.getCode());
+            }
+            this.updateById(es);
+        }).exceptionally(ex -> {
+            ex.printStackTrace();
+            return null;
+        });
 
         return this.save(emailStorage);
     }
