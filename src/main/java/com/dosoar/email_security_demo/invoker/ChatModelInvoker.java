@@ -21,6 +21,7 @@ public class ChatModelInvoker {
     public ChatResponse chat(ChatParam param) {
         ChatResponse response = new ChatResponse();
         String responseStr = HttpRequestUtils.jsonObjectPost(llmAiChatUrl, JSONObject.toJSONString(param));
+        System.out.println(responseStr);
         JSONObject obj = JSONObject.parseObject(responseStr);
         if (obj != null) {
             response.setObject(obj.getString("object"));
