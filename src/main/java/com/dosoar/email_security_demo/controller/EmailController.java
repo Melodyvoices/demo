@@ -45,11 +45,11 @@ public class EmailController {
         PageParam pageParam = new PageParam(pageNum, pageSize);
 
         PageResult<EmailStorage> pageResult = emailStorageService.lambdaQuery()
-                .like(!title.isBlank(), EmailStorage::getTitle, title)
+                .like(!StringUtils.isBlank(title), EmailStorage::getTitle, title)
                 .eq(status != null, EmailStorage::getStatus, status)
                 .eq(type != null, EmailStorage::getType, type)
-                .like(!senders.isBlank(), EmailStorage::getSenders, senders)
-                .like(!recipients.isBlank(), EmailStorage::getRecipients, recipients)
+                .like(!StringUtils.isBlank(senders), EmailStorage::getSenders, senders)
+                .like(!StringUtils.isBlank(recipients), EmailStorage::getRecipients, recipients)
                 .orderByDesc(EmailStorage::getSendDate)
                 .page(pageParam);
 
