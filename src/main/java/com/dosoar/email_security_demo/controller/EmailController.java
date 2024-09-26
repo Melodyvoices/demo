@@ -56,6 +56,11 @@ public class EmailController {
         return Result.ok(pageResult);
     }
 
+    @GetMapping("/getById")
+    public Result<EmailStorage> getEmailById(String id) {
+        return Result.ok(emailStorageService.getById(id));
+    }
+
     @GetMapping("/faq")
     public Result<String> faq(String id) {
         String content = chatService.faqWhyAlert(id);
