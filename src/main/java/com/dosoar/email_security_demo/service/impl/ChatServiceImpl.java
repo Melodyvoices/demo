@@ -43,14 +43,15 @@ public class ChatServiceImpl implements IChatService {
 
         ChatParam chatParam = new ChatParam();
         List<ChatMessage> messages = new ArrayList<>();
+        messages.add(message);
         chatParam.setMessages(messages);
         chatParam.setMax_tokens(1024);
 
         List<ChatResponse.Choice> choices = chatModelInvoker.chat(chatParam).getChoices();
-        if (choices == null || choices.isEmpty()) {
+        if (choices == null || choices.size() < 2) {
             return null;
         }
-        ChatResponse.Choice choice = choices.get(0);
+        ChatResponse.Choice choice = choices.get(1);
         if (choice == null) {
             return null;
         }

@@ -25,8 +25,8 @@ public class TestController {
     @Autowired
     private EmailClfInvoker emailClfInvoker;
 
-    @PostMapping("/test")
-    public Result<JSONObject> test(@RequestBody JSONObject jsObject) {
+    @GetMapping("/test")
+    public Result<String> test() {
 //        String id = IdWorker.getIdStr();
 //        EmailStorage emailStorage = new EmailStorage();
 //        emailStorage.setId(id);
@@ -36,7 +36,7 @@ public class TestController {
 ////        System.out.println(mongoTemplate.insert(emailStorage));
 ////        Set<String> set=mongoTemplate.getCollectionNames();
 ////        System.out.println(set);
-        return Result.ok(jsObject);
+        return Result.ok("success","test controller");
     }
 
 //    @PostMapping("/abc")

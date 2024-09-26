@@ -20,7 +20,11 @@ public class ChatModelInvoker {
 
     public ChatResponse chat(ChatParam param) {
         ChatResponse response = new ChatResponse();
+        System.out.println("start==========================");
         String responseStr = HttpRequestUtils.jsonObjectPost(llmAiChatUrl, JSONObject.toJSONString(param));
+        System.out.println("param==============");
+        System.out.println(JSONObject.toJSONString(param));
+        System.out.println("response==============================");
         System.out.println(responseStr);
         JSONObject obj = JSONObject.parseObject(responseStr);
         if (obj != null) {
