@@ -31,44 +31,10 @@ public class EmailStorageServiceImpl extends ServiceImpl<EmailStorage> implement
 
     @Override
     public Boolean addEmail(AddEmailParam param) {
-        String emailAbsolutePath = pathUtils.getEmailAbsolutePath(param.getFilePath());
-
-        EmailDto emailDto;
-        try {
-            emailDto = EmailUtils.parseEml(emailAbsolutePath);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        String id = IdWorker.getIdStr();
-        EmailStorage emailStorage = new EmailStorage();
-        BeanUtils.copyProperties(emailDto, emailStorage);
-        BeanUtils.copyProperties(param, emailStorage);
-        emailStorage.setId(id);
-        emailStorage.setStatus(EmailStorageStatusEnum.CHECKING.getCode());
+        EmailStorage emailStorage = this.getEmailStorage(param);
 
         CompletableFuture.runAsync(() -> {
-            EmailClfParam emailClfParam = new EmailClfParam();
-            emailClfParam.setModel_type("model_1");
-//            List<String> email_path=new ArrayList<>();
-//            email_path.add(emailAbsolutePath);
-//            emailClfParam.setEmail_path(email_path);
-            List<String> text = new ArrayList<>();
-            text.add(emailDto.getContent());
-            emailClfParam.setText(text);
-
-            EmailClfResponse response = emailClfInvoker.emailClf(emailClfParam);
-
-            EmailStorage es = new EmailStorage();
-            es.setId(id);
-            if (response != null) {
-                es.setType(response.getLabel().get(0));
-                es.setStatus(response.getLabel().get(0));
-            } else {
-                es.setStatus(EmailStorageStatusEnum.FAIL.getCode());
-            }
-            this.updateById(es);
+            this.verifyEmail(emailStorage);
         }).exceptionally(ex -> {
             ex.printStackTrace();
             return null;
@@ -79,9 +45,67 @@ public class EmailStorageServiceImpl extends ServiceImpl<EmailStorage> implement
 
     @Override
     public Boolean addEmailList(List<AddEmailParam> params) {
-        for (AddEmailParam param:params){
-            this.addEmail(param);
+        List<EmailStorage> emailStorageList = new ArrayList<>();
+        for (AddEmailParam param : params) {
+            EmailStorage emailStorage = this.getEmailStorage(param);
+            if (this.save(emailStorage)) {
+                emailStorageList.add(emailStorage);
+            }
         }
+
+        CompletableFuture.runAsync(() -> {
+            for (EmailStorage emailStorage: emailStorageList) {
+                this.verifyEmail(emailStorage);
+            }
+        }).exceptionally(ex -> {
+            ex.printStackTrace();
+            return null;
+        });
+
         return true;
+    }
+
+    private EmailStorage getEmailStorage(AddEmailParam param) {
+        String emailAbsolutePath = pathUtils.getEmailAbsolutePath(param.getFilePath());
+
+        EmailDto emailDto;
+        try {
+            emailDto = EmailUtils.parseEml(emailAbsolutePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        String id = IdWorker.getIdStr();
+        EmailStorage emailStorage = new EmailStorage();
+        BeanUtils.copyProperties(emailDto, emailStorage);
+        BeanUtils.copyProperties(param, emailStorage);
+        emailStorage.setId(id);
+        emailStorage.setStatus(EmailStorageStatusEnum.CHECKING.getCode());
+
+        return emailStorage;
+    }
+
+    private void verifyEmail(EmailStorage emailStorage) {
+        EmailClfParam emailClfParam = new EmailClfParam();
+        emailClfParam.setModel_type("model_1");
+//            List<String> email_path=new ArrayList<>();
+//            email_path.add(emailAbsolutePath);
+//            emailClfParam.setEmail_path(email_path);
+        List<String> text = new ArrayList<>();
+        text.add(emailStorage.getContent());
+        emailClfParam.setText(text);
+
+        EmailClfResponse response = emailClfInvoker.emailClf(emailClfParam);
+
+        EmailStorage es = new EmailStorage();
+        es.setId(emailStorage.getId());
+        if (response != null) {
+            es.setType(response.getLabel().get(0));
+            es.setStatus(response.getLabel().get(0));
+        } else {
+            es.setStatus(EmailStorageStatusEnum.FAIL.getCode());
+        }
+        this.updateById(es);
     }
 }
