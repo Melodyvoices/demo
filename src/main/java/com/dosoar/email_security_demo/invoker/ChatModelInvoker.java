@@ -15,15 +15,17 @@ public class ChatModelInvoker {
     private String llmAiChatUrl;
 
     public ChatResponse chat(ChatParam param) {
-        ChatResponse response=new ChatResponse();
+        ChatResponse response = new ChatResponse();
         String responseStr = HttpRequestUtils.jsonObjectPost(llmAiChatUrl, JSONObject.toJSONString(param));
         JSONObject obj = JSONObject.parseObject(responseStr);
         if (obj != null) {
-           response.setObject(obj.getString("object"));
-           response.setCreated(obj.getInteger("created"));
-           response.setModel(obj.getString("model"));
-            List<ChatResponse.Choice> choices=obj.getJSONArray("choices").toJavaList(ChatResponse.Choice.class);
+            response.setObject(obj.getString("object"));
+            response.setCreated(obj.getInteger("created"));
+            response.setModel(obj.getString("model"));
+            List<ChatResponse.Choice> choices = obj.getJSONArray("choices").toJavaList(ChatResponse.Choice.class);
+            response.setChoices(choices);
         }
+        System.out.println(JSONObject.toJSONString(response));
         return response;
     }
 }

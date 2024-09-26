@@ -51,9 +51,12 @@ public class EmailStorageServiceImpl extends ServiceImpl<EmailStorage> implement
         CompletableFuture.runAsync(() -> {
             EmailClfParam emailClfParam = new EmailClfParam();
             emailClfParam.setModel_type("model_1");
-            List<String> email_path=new ArrayList<>();
-            email_path.add(emailAbsolutePath);
-            emailClfParam.setEmail_path(email_path);
+//            List<String> email_path=new ArrayList<>();
+//            email_path.add(emailAbsolutePath);
+//            emailClfParam.setEmail_path(email_path);
+            List<String> text = new ArrayList<>();
+            text.add(emailDto.getContent());
+            emailClfParam.setText(text);
 
             EmailClfResponse response = emailClfInvoker.emailClf(emailClfParam);
 
@@ -72,5 +75,13 @@ public class EmailStorageServiceImpl extends ServiceImpl<EmailStorage> implement
         });
 
         return this.save(emailStorage);
+    }
+
+    @Override
+    public Boolean addEmailList(List<AddEmailParam> params) {
+        for (AddEmailParam param:params){
+            this.addEmail(param);
+        }
+        return true;
     }
 }

@@ -1,5 +1,8 @@
 package com.dosoar.email_security_demo.service.impl;
 
+import com.dosoar.email_security_demo.enums.EmailStorageTypeEnum;
+import com.dosoar.email_security_demo.exception.BusinessException;
+import com.dosoar.email_security_demo.exception.ResponseCode;
 import com.dosoar.email_security_demo.invoker.ChatModelInvoker;
 import com.dosoar.email_security_demo.invoker.model.entity.ChatMessage;
 import com.dosoar.email_security_demo.invoker.model.entity.ChatRole;
@@ -26,12 +29,13 @@ public class ChatServiceImpl implements IChatService {
     public String faqWhyAlert(String emailId) {
         EmailStorage emailStorage = emailStorageService.getById(emailId);
         if (emailStorage == null) {
-            return null;
+            throw new BusinessException(ResponseCode.GENERAL_EXCEPTION, "错误的id");
+        }
+        if (!EmailStorageTypeEnum.MALICIOUS.getCode().equals(emailStorage.getType())) {
+            throw new BusinessException(ResponseCode.GENERAL_EXCEPTION, "该邮件不为恶意邮件");
         }
 
-        String emailTitle = emailStorage.getTitle() == null ? "空白" : "“" + emailStorage.getTitle() + "”";
-        String emailContent = emailStorage.getContent() == null ? "" : emailStorage.getContent();
-        String messageContent = "我收到了一封标题为" + emailTitle + "的邮件，请告诉我此邮件告警的原因，邮件内容如下：\n" + emailContent;
+        String messageContent = getMessageContent(emailStorage);
 
         ChatMessage message = new ChatMessage();
         message.setRole(ChatRole.user);
@@ -51,5 +55,11 @@ public class ChatServiceImpl implements IChatService {
             return null;
         }
         return choice.getMessage() == null ? null : choice.getMessage().getContent();
+    }
+
+    private static String getMessageContent(EmailStorage emailStorage) {
+        String emailTitle = emailStorage.getTitle() == null ? "空白" : "“" + emailStorage.getTitle() + "”";
+        String emailContent = emailStorage.getContent() == null ? "" : emailStorage.getContent();
+        return "我收到了一封标题为" + emailTitle + "的邮件，请告诉我此邮件告警的原因，邮件内容如下：\n" + emailContent;
     }
 }

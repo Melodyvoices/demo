@@ -17,5 +17,7 @@ public class EmailClfParam implements Serializable {
 
     private String model_type;
 
-    private List<String> email_path;
+//    private List<String> email_path;
+
+    private List<String> text;
 }
