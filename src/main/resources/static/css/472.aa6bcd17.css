@@ -1,0 +1,293 @@
+.cardIndex[data-v-0dc6b654] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: rgba(94, 164, 255, .18);
+    -webkit-backdrop-filter: blur(2.5px);
+    backdrop-filter: blur(2.5px);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px
+}
+
+.cardIndex .card-title-box[data-v-0dc6b654] {
+    min-height: 1.8vw;
+    position: relative;
+    align-items: center;
+    display: flex
+}
+
+.cardIndex .card-title-box .cardTitle-img[data-v-0dc6b654] {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 1.8vw;
+    -webkit-user-drag: none
+}
+
+.cardIndex .card-title-box .title-icon[data-v-0dc6b654] {
+    z-index: 1;
+    width: 1vw;
+    height: .5vw;
+    border-radius: 2px;
+    background: #8be0ff;
+    margin: 0 .5vw
+}
+
+.cardIndex .card-title-box .card-title[data-v-0dc6b654] {
+    z-index: 1;
+    color: #fff;
+    font-weight: 700;
+    font-size: calc(.12em + .76vw);
+    font-family: SourceHanSansSC
+}
+
+.cardIndex .content[data-v-0dc6b654] {
+    z-index: -1;
+    flex: 1;
+    -webkit-user-drag: none;
+    color: #fff;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center
+}
+
+.homeIndex[data-v-7a472af6] {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    gap: 2vw;
+    padding: 1vw 2vw
+}
+
+.homeIndex .filterCard[data-v-7a472af6] {
+    overflow-y: auto;
+    overflow-x: hidden
+}
+
+.homeIndex .filterCard .level-1[data-v-7a472af6] {
+    width: 96%
+}
+
+.homeIndex .filterCard .level-1 .overview-box[data-v-7a472af6] {
+    width: 100%;
+    height: 90%;
+    justify-content: space-around;
+    align-items: center
+}
+
+.homeIndex .filterCard .level-1 .overview-box .overview-data[data-v-7a472af6] {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    gap: .15vw
+}
+
+.homeIndex .filterCard .level-1 .overview-box .overview-title[data-v-7a472af6] {
+    display: flex;
+    align-items: center;
+    gap: .6vw
+}
+
+.homeIndex .filterCard .level-1 .overview-box .overview-text[data-v-7a472af6] {
+    font-size: calc(.12em + .72vw);
+    font-family: SourceHanSansSC;
+    letter-spacing: .01vw
+}
+
+.homeIndex .filterCard .level-2[data-v-7a472af6] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%
+}
+
+.homeIndex .filterCard .level-2 .dataDistribution[data-v-7a472af6] {
+    width: 18vw
+}
+
+.homeIndex .filterCard .level-2 .dataDistribution .dataDistribution-title[data-v-7a472af6] {
+    display: flex;
+    align-items: center
+}
+
+.homeIndex .filterCard .level-2 .filterDistribution .filterDistribution-title[data-v-7a472af6] {
+    display: flex;
+    align-items: center;
+    width: 20vw
+}
+
+.homeIndex .filterCard .level-2 .filterDistribution .filterDistribution-content[data-v-7a472af6] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%
+}
+
+.homeIndex .filterCard .level-2 .filterDistribution .filterDistribution-content .text[data-v-7a472af6] {
+    width: 8vw;
+    padding: .5vw;
+    text-align: center;
+    margin: 1px;
+    font-size: calc(.12em + .76vw)
+}
+
+.homeIndex .filterCard .level-3[data-v-7a472af6] {
+    display: flex;
+    justify-content: space-around;
+    width: 100%
+}
+
+.homeIndex .filterCard .level-3 .percentage-card[data-v-7a472af6] {
+    background: #193151;
+    width: 18vw;
+    margin-bottom: 2vw;
+    position: relative
+}
+
+.homeIndex .filterCard .level-3 .percentage-card .percentage-title[data-v-7a472af6] {
+    display: flex;
+    align-items: center;
+    margin-top: .2vw
+}
+
+.homeIndex .filterCard .level-3 .percentage-card .accuracy-box[data-v-7a472af6] {
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    right: -5vw;
+    height: 100%;
+    width: 100%
+}
+
+.homeIndex .filterCard .level-3 .percentage-card .accuracy-mask[data-v-7a472af6] {
+    width: 6vw;
+    height: 6vw;
+    border-radius: 100%;
+    position: absolute;
+    background: #000
+}
+
+.homeIndex .filterCard .level-3 .level-3-data[data-v-7a472af6] {
+    display: flex;
+    width: 100%;
+    height: 80%;
+    z-index: -1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.homeIndex .filterCard .level-3 .level-3-data .data-text[data-v-7a472af6] {
+    width: 70%;
+    height: 1.5vw;
+    background: url(../img/data_background.2b635e72.svg);
+    display: flex;
+    align-items: center;
+    font-size: calc(.12em + .72vw);
+    font-weight: 700;
+    color: #d2d2d2;
+    letter-spacing: .01vw
+}
+
+.homeIndex .filterCard .level-3 .level-3-data .data-text .data[data-v-7a472af6] {
+    min-width: 3vw;
+    color: #ffc927
+}
+
+.homeIndex .filterCard .title-icon[data-v-7a472af6] {
+    z-index: 1;
+    width: .5vw;
+    height: .5vw;
+    border-radius: 2px;
+    background: #8be0ff;
+    margin: 0 .5vw
+}
+
+.homeIndex .filterCard .title-text[data-v-7a472af6] {
+    color: #fff;
+    font-weight: 700;
+    font-size: calc(.12em + .76vw);
+    font-family: SourceHanSansSC
+}
+
+.homeIndex .home-right[data-v-7a472af6] {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    width: 100%;
+    height: 100%
+}
+
+.homeIndex .home-right .attackCard .attack-box[data-v-7a472af6] {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center
+}
+
+.homeIndex[data-v-7a472af6] .vue-apexcharts {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -.6vw
+}
+
+.homeIndex[data-v-7a472af6] .apexcharts-legend-text {
+    padding-left: 20px;
+    color: #fff !important
+}
+
+.homeIndex[data-v-7a472af6] .ant-radio-group {
+    display: flex;
+    width: 90%
+}
+
+.homeIndex[data-v-7a472af6] .ant-radio-group .ant-radio-button-wrapper {
+    flex: 1;
+    height: 2vw;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: #0f326a;
+    color: #74b7ff;
+    border: .05vw solid #1684fc;
+    font-size: calc(.12em + .76vw)
+}
+
+.homeIndex[data-v-7a472af6] .ant-radio-group .ant-radio-button-wrapper-checked {
+    color: #fff !important;
+    border: .05vw solid #1684fc;
+    background: rgba(22, 132, 252, .66) !important
+}
+
+.homeIndex[data-v-7a472af6] .ant-radio-group .ant-radio-button-wrapper:before {
+    background: transparent
+}
+
+.homeIndex[data-v-7a472af6] .ant-progress {
+    margin: 0
+}
+
+.homeIndex[data-v-7a472af6] .ant-progress .ant-progress-text {
+    color: #fff
+}
+
+.homeIndex[data-v-7a472af6] .ant-progress .ant-progress-inner {
+    background: rgba(0, 0, 0, .2)
+}
+
+.homeIndex[data-v-7a472af6] .apexcharts-toolbar {
+    display: none
+}
